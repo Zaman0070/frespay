@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:feras_pay/auth/login_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'auth/registeration_screen.dart';
+import 'package:sizer/sizer.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,8 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(
       const Duration(seconds: 3),
-          () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: ((context) => RegistrationScreen()))),
+      () => Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: ((context) => LoginScreen()))),
     );
     super.initState();
   }
@@ -26,13 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Hero(
-          tag: 'logo',
-          child: SizedBox(
-            width: 250,
-            height: 250,
-            child: Image.asset('assets/images/Splash Page.png'),
-          ),
+        child: SizedBox(
+          width: 100.w,
+          height: 100.h,
+          child: Image.asset('assets/images/Splash Page.png'),
         ),
       ),
     );

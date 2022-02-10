@@ -1,21 +1,23 @@
+import 'package:feras_pay/auth/registeration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationScreen> createState() => _RegistrationScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool _isVisible = false;
+  bool arbi = false;
+  bool english = false;
+
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = 'Naigeria';
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController fNameController = TextEditingController();
-    bool _isVisible = false;
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
@@ -24,81 +26,68 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             padding: EdgeInsets.all(2.h),
             child: Column(
                 // crossAxisAlignment: CrossAxisAlignment.center,
-
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset('assets/images/SignIn.png'),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Select Country',
+                  Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    RawMaterialButton(
+                      constraints:
+                          BoxConstraints(minHeight: 4.h, minWidth: 25.w),
+                      // padding: EdgeInsets.all(1.h),
+
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 0.15.h,
+                            color: arbi == true ? Colors.purple : Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(2.h)),
+                      onPressed: () {
+                        setState(() {
+                          arbi = true;
+                          english = false;
+                        });
+                      },
+                      child: Text(
+                        'Arabic',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.sp,
+                            color: arbi == true ? Colors.purple : Colors.grey),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    RawMaterialButton(
+                      constraints:
+                          BoxConstraints(minHeight: 4.h, minWidth: 25.w),
+                      // padding: EdgeInsets.all(1.h),
+
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 0.15.h,
+                            color:
+                                english == true ? Colors.purple : Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(2.h)),
+                      onPressed: () {
+                        setState(() {
+                          arbi = false;
+                          english = true;
+                        });
+                      },
+                      child: Text(
+                        'English',
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 15.sp,
+                          fontSize: 12.sp,
+                          color: english == true ? Colors.purple : Colors.grey,
                         ),
                       ),
-                    ],
-                  ),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 2,
-                      color: Colors.deepPurpleAccent,
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: <String>['Naigeria', 'Usa', 'Pakistan', 'Chins']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Full Name',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  TextField(
-                    controller: fNameController,
-                    keyboardType: TextInputType.emailAddress,
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(2.h),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(2.h),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2.h),
-                      ),
-                      hintText: 'contactinfo@gmail.com',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
+                  ]),
                   Row(
                     children: [
                       Text(
@@ -128,9 +117,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                       hintText: 'contactinfo@gmail.com',
                     ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
                   ),
                   Row(
                     children: [
@@ -174,8 +160,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       hintText: 'xxxxxxxxx',
                     ),
                   ),
-                  SizedBox(
-                    height: 2.h,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Forget Password?',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(
+                            fontSize: 12.sp, color: Colors.purpleAccent),
+                      ),
+                    ],
                   ),
                   RawMaterialButton(
                     constraints: BoxConstraints(minHeight: 5.h, minWidth: 29.w),
@@ -185,7 +179,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         borderRadius: BorderRadius.circular(2.h)),
                     onPressed: () {},
                     child: Text(
-                      'Sign up',
+                      'Sign In',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -194,15 +188,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 2.h,
+                  Text(
+                    'OR',
+                    style: TextStyle(
+                        fontSize: 11.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/finger.png'),
+                      SizedBox(
+                        width: 1.5.w,
+                      ),
+                      Text(
+                        'Use Fingerprint',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an Account ?',
-                        
+                        'New to FerasPay ?',
+                        textAlign: TextAlign.end,
                         style: TextStyle(fontSize: 10.sp, color: Colors.black),
                       ),
                       SizedBox(
@@ -212,10 +224,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onTap: (() => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: ((context) => LoginScreen())))),
+                                builder: ((context) => RegistrationScreen())))),
                         child: Text(
-                          'Sign In',
-                         
+                          'Create Account',
+                          textAlign: TextAlign.end,
                           style: TextStyle(fontSize: 11.sp, color: Colors.pink),
                         ),
                       ),
