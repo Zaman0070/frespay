@@ -1,4 +1,4 @@
-import 'package:feras_pay/splash_screen.dart';
+import 'package:feras_pay/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
         builder: (context, orientation, deviceType){
           return  MaterialApp(
+            debugShowCheckedModeBanner: false,
             home: SplashScreen(),
           );
         }

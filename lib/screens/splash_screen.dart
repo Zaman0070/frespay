@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:feras_pay/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import '../auth/registeration_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -26,10 +27,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          width: 100.w,
-          height: 100.h,
-          child: Image.asset('assets/images/Splash Page.png'),
+        child: Hero(
+          tag: 'logo',
+          child: SizedBox(
+            width: 100.w,
+            height: 100.h,
+            child: Image.asset(
+              'assets/images/Splash Page.png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

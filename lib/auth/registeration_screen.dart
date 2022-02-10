@@ -1,3 +1,4 @@
+import 'package:feras_pay/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -202,7 +203,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     children: [
                       Text(
                         'Already have an Account ?',
-                        
                         style: TextStyle(fontSize: 10.sp, color: Colors.black),
                       ),
                       SizedBox(
@@ -215,7 +215,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 builder: ((context) => LoginScreen())))),
                         child: Text(
                           'Sign In',
-                         
                           style: TextStyle(fontSize: 11.sp, color: Colors.pink),
                         ),
                       ),

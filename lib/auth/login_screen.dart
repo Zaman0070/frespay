@@ -1,4 +1,5 @@
 import 'package:feras_pay/auth/registeration_screen.dart';
+import 'package:feras_pay/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -177,7 +178,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     fillColor: Colors.purple,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(2.h)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => HomeScreen())));
+                    },
                     child: Text(
                       'Sign In',
                       textAlign: TextAlign.start,
