@@ -12,6 +12,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
+    final items = ['USA', 'NIGERIA', 'AUSTRALIA', 'DUBAI'];
     String dropdownValue = 'Naigeria';
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
@@ -34,7 +35,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   Row(
                     children: [
                       Text(
-                        'Select Country',
+                        'Your Country',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15.sp,
@@ -42,27 +43,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       ),
                     ],
                   ),
-                  DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(
-                      height: 2,
-                      color: Colors.deepPurpleAccent,
+                  TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    autofocus: false,
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.arrow_drop_down_outlined),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(2.h),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(2.h),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(2.h),
+                      ),
+                      hintText: 'USA',
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: <String>['Naigeria', 'Usa', 'Pakistan', 'Chins']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                   SizedBox(
                     height: 2.h,
